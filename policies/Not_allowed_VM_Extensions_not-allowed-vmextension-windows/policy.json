@@ -1,0 +1,47 @@
+{
+ "properties": {
+  "displayName": "Not allowed VM Extensions",
+  "policyType": "Custom",
+  "mode": "All",
+  "description": "This policy governs which VM extensions that are explicitly denied.",
+  "metadata": {
+   "createdBy": "c5a664e9-c886-46a1-ad71-c924d847e36c",
+   "createdOn": "2022-11-10T13:58:07.3750755Z",
+   "updatedBy": "c5a664e9-c886-46a1-ad71-c924d847e36c",
+   "updatedOn": "2022-11-10T14:02:14.2675553Z"
+  },
+  "parameters": {
+   "notAllowedExtensions": {
+    "type": "Array",
+    "metadata": {
+     "displayName": "Denied extension",
+     "description": "The list of extensions that will be denied."
+    }
+   }
+  },
+  "policyRule": {
+   "if": {
+    "allOf": [
+     {
+      "field": "type",
+      "equals": "Microsoft.Compute/virtualMachines/extensions"
+     },
+     {
+      "field": "Microsoft.Compute/virtualMachines/extensions/publisher",
+      "equals": "Microsoft.Azure.AzureDefenderForServers"
+     },
+     {
+      "field": "Microsoft.Compute/virtualMachines/extensions/type",
+      "in": "[parameters('notAllowedExtensions')]"
+     }
+    ]
+   },
+   "then": {
+    "effect": "deny"
+   }
+  }
+ },
+ "id": "/subscriptions/ef80f942-3983-4282-a93c-b6f2a66d4cab/providers/Microsoft.Authorization/policyDefinitions/not-allowed-vmextension-windows",
+ "type": "Microsoft.Authorization/policyDefinitions",
+ "name": "not-allowed-vmextension-windows"
+}
