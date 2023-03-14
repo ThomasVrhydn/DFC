@@ -1,0 +1,1 @@
+Heartbeat | where Category == "Azure Monitor Agent"
