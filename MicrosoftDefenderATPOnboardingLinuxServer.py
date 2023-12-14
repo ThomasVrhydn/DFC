@@ -1,4 +1,3 @@
-
 #!/usr/bin/env python
 
 import sys, getopt, os, errno, json, subprocess, tempfile
