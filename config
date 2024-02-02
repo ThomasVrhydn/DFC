@@ -1,0 +1,60 @@
+{
+   "antivirusEngine":{
+      "enforcementLevel":"real_time",
+      "scanAfterDefinitionUpdate":true,
+      "scanArchives":true,
+      "maximumOnDemandScanThreads":2,
+      "exclusionsMergePolicy":"merge",
+      "exclusions":[
+         {
+            "$type":"excludedPath",
+            "isDirectory":false,
+            "path":"/var/log/system.log<EXAMPLE DO NOT USE>"
+         },
+         {
+            "$type":"excludedPath",
+            "isDirectory":true,
+            "path":"/run<EXAMPLE DO NOT USE>"
+         },
+         {
+            "$type":"excludedPath",
+            "isDirectory":true,
+            "path":"/home/*/git<EXAMPLE DO NOT USE>"
+         },
+         {
+            "$type":"excludedFileExtension",
+            "extension":".pdf<EXAMPLE DO NOT USE>"
+         },
+         {
+            "$type":"excludedFileName",
+            "name":"cat<EXAMPLE DO NOT USE>"
+         }
+      ],   
+      "disallowedThreatActions":[
+         "allow",
+         "restore"
+      ],
+      "nonExecMountPolicy":"unmute",
+      "unmonitoredFilesystems": ["nfs"],
+      "scanResultsRetentionDays":"90",
+      "scanHistoryMaximumItems":"1000",
+      "threatTypeSettingsMergePolicy":"merge",
+      "threatTypeSettings":[
+         {
+            "key":"potentially_unwanted_application",
+            "value":"block"
+         },
+         {
+            "key":"archive_bomb",
+            "value":"audit"
+         }
+      ]
+   },
+   "cloudService":{
+      "enabled":true,
+      "diagnosticLevel":"required",
+	   "cloudBlockLevel":"high",
+      "automaticSampleSubmissionConsent":"all",
+      "automaticDefinitionUpdateEnabled":true
+   }
+}
